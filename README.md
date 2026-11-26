@@ -37,7 +37,9 @@ nothing in the analysis went wrong.
 | [Validation](validation/) | Is the disease difference the disease? | outside the lab | 84 samples |
 
 Each chapter folder holds the lab's own report (`report/lab-report.pdf` and `.html`), the figures it drew, the
-result tables, and `report/run.json` — every parameter, software version and stage summary.
+result tables, and `report/run.json` — every parameter, software version and stage summary. Chapter 3 has no
+result tables because the integration stage produces only diagnostics and plots; its numbers are in its
+`run.json`.
 
 Because the lab writes one report per run, each chapter's report is the report **as it stood when that chapter
 finished**. Later chapters' reports therefore contain the earlier chapters' sections too. Nothing is hidden by
