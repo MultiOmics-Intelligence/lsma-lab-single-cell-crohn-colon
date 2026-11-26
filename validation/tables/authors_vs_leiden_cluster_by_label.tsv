@@ -1,0 +1,26 @@
+authors_label	n_cells	most_common_leiden_cluster	share_in_that_label	n_distinct_labels_it_maps_to
+Plasma cells	56237	16	0.3877	19
+T cells CD4 FOSB	14908	8	0.4132	19
+B cells	8638	19	0.9104	19
+T cells Naive CD4	6835	8	0.4794	13
+Mast cells	5615	18	0.9528	18
+Macrophages CCL3 CCL4	4422	1	0.7818	5
+T cells CD8	4362	9	0.7666	12
+Tregs	4264	6	0.7509	10
+T cells CD8 KLRG1	3815	9	0.8702	10
+NK-like cells ID3 ENTPD1	3586	9	0.78	13
+Macrophages LYVE1	3395	1	0.7879	6
+T cells CD4 IL17A	3139	8	0.799	10
+Macrophages	2206	5	0.7493	16
+DC2 CD1D	2049	1	0.938	6
+Immune Cycling cells	2025	0	0.7743	15
+NK cells KLRF1 CD3G-	1976	9	0.8831	15
+Monocytes S100A8 S100A9	1595	1	0.5053	5
+DC2 CD1D-	1247	5	0.5333	6
+Macrophages Metallothionein	1119	1	0.8239	7
+DC1	788	5	0.4987	6
+ILCs	612	8	0.7925	12
+B cells AICDA LRMP	409	20	0.9071	4
+Mature DCs	250	1	0.552	7
+T cells OGT	235	6	0.4468	9
+Monocytes CHI3L1 CYP27A1	162	1	0.9938	2

@@ -1,0 +1,26 @@
+authors_label	B cell	CD4-positive, alpha-beta T cell	CD8-positive, alpha-beta T cell	T cell	conventional dendritic cell	dendritic cell	innate lymphoid cell	leukocyte	macrophage	mast cell	monocyte	naive T cell	natural killer cell	plasma cell	plasmacytoid dendritic cell	regulatory T cell	unknown
+B cells	8638	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+B cells AICDA LRMP	409	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+DC1	0	0	0	0	788	0	0	0	0	0	0	0	0	0	0	0	0
+DC2 CD1D	0	0	0	0	0	0	0	0	0	0	0	0	0	0	2049	0	0
+DC2 CD1D-	0	0	0	0	0	0	0	0	0	0	0	0	0	0	1247	0	0
+ILCs	0	0	0	0	0	0	612	0	0	0	0	0	0	0	0	0	0
+Immune Cycling cells	0	0	0	0	0	0	0	2025	0	0	0	0	0	0	0	0	0
+Macrophages	0	0	0	0	0	0	0	0	2206	0	0	0	0	0	0	0	0
+Macrophages CCL3 CCL4	0	0	0	0	0	0	0	0	4422	0	0	0	0	0	0	0	0
+Macrophages LYVE1	0	0	0	0	0	0	0	0	3395	0	0	0	0	0	0	0	0
+Macrophages Metallothionein	0	0	0	0	0	0	0	0	1119	0	0	0	0	0	0	0	0
+Mast cells	0	0	0	0	0	0	0	0	0	5615	0	0	0	0	0	0	0
+Mature DCs	0	0	0	0	0	250	0	0	0	0	0	0	0	0	0	0	0
+Monocytes CHI3L1 CYP27A1	0	0	0	0	0	0	0	0	0	0	162	0	0	0	0	0	0
+Monocytes S100A8 S100A9	0	0	0	0	0	0	0	0	0	0	1595	0	0	0	0	0	0
+NK cells KLRF1 CD3G-	0	0	0	0	0	0	0	0	0	0	0	0	1976	0	0	0	0
+NK-like cells ID3 ENTPD1	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	3586
+Plasma cells	0	0	0	0	0	0	0	0	0	0	0	0	0	56237	0	0	0
+T cells CD4 FOSB	0	14908	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+T cells CD4 IL17A	0	3139	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+T cells CD8	0	0	4362	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+T cells CD8 KLRG1	0	0	3815	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+T cells Naive CD4	0	0	0	0	0	0	0	0	0	0	0	6835	0	0	0	0	0
+T cells OGT	0	0	0	235	0	0	0	0	0	0	0	0	0	0	0	0	0
+Tregs	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	4264	0

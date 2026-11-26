@@ -1,0 +1,9 @@
+{
+ "significant_in_A_naive": 5023,
+ "significant_in_B_chemistry_only": 2464,
+ "in_both": 1633,
+ "share_of_A_also_called_by_chemistry_alone": 0.3251,
+ "significant_in_C_chemistry_matched": 658,
+ "in_A_and_C": 330,
+ "share_of_A_surviving_in_C": 0.0657
+}

@@ -1,0 +1,26 @@
+authors_label	n_cells	most_common_lab_annotation	share_in_that_label	n_distinct_labels_it_maps_to
+Plasma cells	56237	Plasma cells	0.9954	7
+T cells CD4 FOSB	14908	T cells	0.8796	7
+B cells	8638	B cells	0.9184	7
+T cells Naive CD4	6835	T cells	0.964	6
+Mast cells	5615	Mast cells	0.9528	7
+Macrophages CCL3 CCL4	4422	Myeloid cells	0.9984	2
+T cells CD8	4362	NK cells	0.7666	6
+Tregs	4264	T cells	0.9777	5
+T cells CD8 KLRG1	3815	NK cells	0.8702	6
+NK-like cells ID3 ENTPD1	3586	NK cells	0.78	6
+Macrophages LYVE1	3395	Myeloid cells	0.9997	2
+T cells CD4 IL17A	3139	T cells	0.9701	5
+Macrophages	2206	Myeloid cells	0.9112	7
+DC2 CD1D	2049	Myeloid cells	0.9907	2
+Immune Cycling cells	2025	Proliferating cells	0.7743	6
+NK cells KLRF1 CD3G-	1976	NK cells	0.8831	6
+Monocytes S100A8 S100A9	1595	Myeloid cells	0.9994	2
+DC2 CD1D-	1247	Myeloid cells	0.9928	3
+Macrophages Metallothionein	1119	Myeloid cells	0.9929	4
+DC1	788	Myeloid cells	0.9607	3
+ILCs	612	T cells	0.8922	6
+B cells AICDA LRMP	409	B cells	0.9364	3
+Mature DCs	250	Myeloid cells	0.988	4
+T cells OGT	235	T cells	0.8681	4
+Monocytes CHI3L1 CYP27A1	162	Myeloid cells	1.0	1

@@ -1,0 +1,8 @@
+cell_type_predicted	n_tested	n_significant	n_up	n_down
+B cells	2419	47	22	25
+Mast cells	1475	45	27	18
+Myeloid cells	6579	524	274	250
+NK cells	3582	42	20	22
+Plasma cells	9840	442	227	215
+Proliferating cells	3672	150	22	128
+T cells	6487	253	164	89

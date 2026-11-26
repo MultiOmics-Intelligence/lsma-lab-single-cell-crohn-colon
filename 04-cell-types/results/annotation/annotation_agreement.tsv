@@ -1,0 +1,18 @@
+Dataset label	B cells	Mast cells	Myeloid cells	NK cells	Plasma cells	Proliferating cells	T cells
+B cell	8316	3	79	13	323	53	260
+CD4-positive, alpha-beta T cell	15	3	15	1632	152	72	16158
+CD8-positive, alpha-beta T cell	2	0	5	6664	10	23	1473
+T cell	0	0	0	23	6	2	204
+conventional dendritic cell	2	0	757	0	0	29	0
+dendritic cell	1	0	247	0	1	0	1
+innate lymphoid cell	2	0	10	46	5	3	546
+leukocyte	9	0	415	11	5	1568	17
+macrophage	103	3	10930	6	35	18	47
+mast cell	9	5350	132	1	50	37	36
+monocyte	0	0	1756	0	0	1	0
+naive T cell	3	0	2	223	15	3	6589
+natural killer cell	0	3	6	1745	14	29	179
+plasma cell	105	34	19	1	55977	48	53
+plasmacytoid dendritic cell	3	0	3268	0	0	25	0
+regulatory T cell	0	0	7	44	6	38	4169
+unknown	1	0	2	2797	7	84	695

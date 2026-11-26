@@ -1,0 +1,26 @@
+{
+ "authors_vs_lab_annotation": {
+  "adjusted_rand_index": 0.8011,
+  "normalised_mutual_information": 0.7141,
+  "mean_purity": 0.9489,
+  "status": "compared",
+  "n_labels_authors": 25,
+  "n_labels_lab_annotation": 7
+ },
+ "authors_vs_leiden_cluster": {
+  "adjusted_rand_index": 0.3162,
+  "normalised_mutual_information": 0.5978,
+  "mean_purity": 0.5728,
+  "status": "compared",
+  "n_labels_authors": 25,
+  "n_labels_leiden_cluster": 25
+ },
+ "authors_vs_cellxgene_ontology": {
+  "adjusted_rand_index": 0.962,
+  "normalised_mutual_information": 0.9435,
+  "mean_purity": 1.0,
+  "status": "compared",
+  "n_labels_authors": 25,
+  "n_labels_cellxgene_ontology": 17
+ }
+}

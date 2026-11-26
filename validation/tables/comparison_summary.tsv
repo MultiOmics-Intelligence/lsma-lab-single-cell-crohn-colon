@@ -1,0 +1,5 @@
+comparison	note	status	reason	n_samples	n_genes_tested	n_significant	sides
+A_crohn_vs_healthy_all_chemistries	Crohn's vs healthy using every sample. Chemistry is not matched between the groups.	run		84	16204	5023	"{""healthy"": 45, ""crohn"": 39}"
+B_healthy_v1_vs_v2_chemistry_only	Healthy colon against healthy colon, differing only in 10x chemistry. Any gene called here is one chemistry alone can produce.	run		45	14485	2464	"{""v1"": 33, ""v2"": 12}"
+C_crohn_vs_healthy_v2_only	Crohn's vs healthy within one chemistry, so the comparison is not confounded by it.	run		20	15449	658	"{""healthy"": 12, ""crohn"": 8}"
+D_inflamed_vs_noninflamed_paired	Inflamed against non-inflamed tissue from the same patients, with the donor in the model. Immune to the chemistry confound and to differences between people.	run		12	13759	100	"{""Infl"": 6, ""NonI"": 6}"

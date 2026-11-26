@@ -1,0 +1,18 @@
+cell_type	G1	S	G2M
+B cell	5329	3135	583
+CD4-positive, alpha-beta T cell	11561	5194	1292
+CD8-positive, alpha-beta T cell	4914	2530	733
+T cell	146	53	36
+conventional dendritic cell	515	206	67
+dendritic cell	191	40	19
+innate lymphoid cell	420	161	31
+leukocyte	156	860	1009
+macrophage	9129	1503	510
+mast cell	3697	1430	488
+monocyte	1580	129	48
+naive T cell	4357	2126	352
+natural killer cell	1198	618	160
+plasma cell	42324	12963	950
+plasmacytoid dendritic cell	2536	644	116
+regulatory T cell	2624	1220	420
+unknown	2066	1288	232

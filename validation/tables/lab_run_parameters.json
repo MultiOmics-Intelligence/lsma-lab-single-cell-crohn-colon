@@ -1,0 +1,80 @@
+{
+  "import": {
+    "sample_column": "biosample_id"
+  },
+  "qc": {
+    "threshold_mode": "mad",
+    "nmads": 5,
+    "nmads_mt": 3,
+    "max_pct_mt": 20,
+    "min_genes": 200,
+    "doublet_method": "scrublet",
+    "remove_doublets": true,
+    "min_cells_per_gene": 3
+  },
+  "normalisation": {
+    "method": "lognorm",
+    "n_top_genes": 2000,
+    "target_sum": 10000,
+    "hvg_per_sample": true,
+    "regress_out": [],
+    "scale_max": 10
+  },
+  "dimensionality_reduction": {
+    "n_pcs": 30,
+    "n_pcs_compute": 50,
+    "n_neighbors": 15,
+    "umap_min_dist": 0.5,
+    "compute_tsne": false,
+    "metric": "euclidean"
+  },
+  "integration": {
+    "enabled": true,
+    "method": "harmony",
+    "batch_key": "assay",
+    "label_key": "Celltype",
+    "harmony_max_iter": 20
+  },
+  "clustering": {
+    "method": "leiden",
+    "resolution": 0.8,
+    "n_markers": 50
+  },
+  "annotation": {
+    "method": "marker_scoring",
+    "marker_panel": "auto",
+    "export_seurat_rds": false
+  },
+  "differential_expression": {
+    "enabled": true,
+    "comparison": "pseudobulk_condition",
+    "group_by": "cell_type_predicted",
+    "condition_column": "Type",
+    "test_level": "Infl",
+    "reference_level": "NonI",
+    "sample_column": "biosample_id",
+    "covariates": ["assay"],
+    "min_cells": 10,
+    "alpha": 0.05
+  },
+  "interpretation": {
+    "enabled": true,
+    "source": "auto",
+    "collections": ["hallmark", "go_bp"],
+    "run_ora": true,
+    "run_gsea": true,
+    "score_collection": "hallmark",
+    "padj_cutoff": 0.05,
+    "lfc_cutoff": 1,
+    "min_set_size": 10,
+    "max_set_size": 500
+  },
+  "advanced": {
+    "enabled": true,
+    "modules": ["cell_cycle", "trajectory", "differential_abundance", "communication", "tf_activity"],
+    "condition_column": "Type",
+    "test_level": "Infl",
+    "reference_level": "NonI",
+    "communication_permutations": 100
+  }
+}

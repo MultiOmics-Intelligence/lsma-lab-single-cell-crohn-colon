@@ -1,0 +1,26 @@
+authors_label	B cells	Mast cells	Myeloid cells	NK cells	Plasma cells	Proliferating cells	T cells
+B cells	7933	3	79	13	322	28	260
+B cells AICDA LRMP	383	0	0	0	1	25	0
+DC1	2	0	757	0	0	29	0
+DC2 CD1D	0	0	2030	0	0	19	0
+DC2 CD1D-	3	0	1238	0	0	6	0
+ILCs	2	0	10	46	5	3	546
+Immune Cycling cells	9	0	415	11	5	1568	17
+Macrophages	103	3	2010	6	33	5	46
+Macrophages CCL3 CCL4	0	0	4415	0	0	7	0
+Macrophages LYVE1	0	0	3394	0	1	0	0
+Macrophages Metallothionein	0	0	1111	0	1	6	1
+Mast cells	9	5350	132	1	50	37	36
+Mature DCs	1	0	247	0	1	0	1
+Monocytes CHI3L1 CYP27A1	0	0	162	0	0	0	0
+Monocytes S100A8 S100A9	0	0	1594	0	0	1	0
+NK cells KLRF1 CD3G-	0	3	6	1745	14	29	179
+NK-like cells ID3 ENTPD1	1	0	2	2797	7	84	695
+Plasma cells	105	34	19	1	55977	48	53
+T cells CD4 FOSB	15	3	14	1547	148	68	13113
+T cells CD4 IL17A	0	0	1	85	4	4	3045
+T cells CD8	1	0	2	3344	6	15	994
+T cells CD8 KLRG1	1	0	3	3320	4	8	479
+T cells Naive CD4	3	0	2	223	15	3	6589
+T cells OGT	0	0	0	23	6	2	204
+Tregs	0	0	7	44	6	38	4169

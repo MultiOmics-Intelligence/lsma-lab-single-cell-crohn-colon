@@ -1,0 +1,26 @@
+authors_label	n_cells	most_common_cellxgene_ontology	share_in_that_label	n_distinct_labels_it_maps_to
+Plasma cells	56237	plasma cell	1.0	1
+T cells CD4 FOSB	14908	CD4-positive, alpha-beta T cell	1.0	1
+B cells	8638	B cell	1.0	1
+T cells Naive CD4	6835	naive T cell	1.0	1
+Mast cells	5615	mast cell	1.0	1
+Macrophages CCL3 CCL4	4422	macrophage	1.0	1
+T cells CD8	4362	CD8-positive, alpha-beta T cell	1.0	1
+Tregs	4264	regulatory T cell	1.0	1
+T cells CD8 KLRG1	3815	CD8-positive, alpha-beta T cell	1.0	1
+NK-like cells ID3 ENTPD1	3586	unknown	1.0	1
+Macrophages LYVE1	3395	macrophage	1.0	1
+T cells CD4 IL17A	3139	CD4-positive, alpha-beta T cell	1.0	1
+Macrophages	2206	macrophage	1.0	1
+DC2 CD1D	2049	plasmacytoid dendritic cell	1.0	1
+Immune Cycling cells	2025	leukocyte	1.0	1
+NK cells KLRF1 CD3G-	1976	natural killer cell	1.0	1
+Monocytes S100A8 S100A9	1595	monocyte	1.0	1
+DC2 CD1D-	1247	plasmacytoid dendritic cell	1.0	1
+Macrophages Metallothionein	1119	macrophage	1.0	1
+DC1	788	conventional dendritic cell	1.0	1
+ILCs	612	innate lymphoid cell	1.0	1
+B cells AICDA LRMP	409	B cell	1.0	1
+Mature DCs	250	dendritic cell	1.0	1
+T cells OGT	235	T cell	1.0	1
+Monocytes CHI3L1 CYP27A1	162	monocyte	1.0	1

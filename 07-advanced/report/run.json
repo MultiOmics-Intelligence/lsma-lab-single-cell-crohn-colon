@@ -1,0 +1,2563 @@
+{
+ "workflow": "scrna-seq",
+ "workflow_version": "1.0.0",
+ "seed": 42,
+ "dataset": {
+  "kind": "sc_matrix",
+  "organism": "human",
+  "name": "CELLxGENE: colon immune"
+ },
+ "inputs": [
+  {
+   "role": "h5ad",
+   "path": "inputs/cellxgene_518d9049-2a76-44f8-8abc-1e2b59ab5ba1.h5ad",
+   "filename": "cellxgene_518d9049-2a76-44f8-8abc-1e2b59ab5ba1.h5ad",
+   "sample_label": "",
+   "sha256": "1393277112c6e2d3f58796cca6898b7b7423aceb2b6fb86db068fd62dcafab25"
+  }
+ ],
+ "parameters": {
+  "import": {
+   "sample_column": "biosample_id",
+   "max_cells": null
+  },
+  "qc": {
+   "threshold_mode": "mad",
+   "nmads": 5,
+   "nmads_mt": 3,
+   "max_pct_mt": 20,
+   "min_genes": 200,
+   "max_genes": null,
+   "min_counts": null,
+   "max_counts": null,
+   "doublet_method": "scrublet",
+   "remove_doublets": true,
+   "expected_doublet_rate": null,
+   "min_cells_per_gene": 3
+  },
+  "normalisation": {
+   "method": "lognorm",
+   "n_top_genes": 2000,
+   "target_sum": 10000,
+   "hvg_per_sample": true,
+   "regress_out": [],
+   "scale_max": 10
+  },
+  "dimensionality_reduction": {
+   "n_pcs": 30,
+   "n_neighbors": 15,
+   "umap_min_dist": 0.5,
+   "compute_tsne": false,
+   "n_pcs_compute": 50,
+   "metric": "euclidean",
+   "umap_spread": 1.0,
+   "tsne_perplexity": 30
+  },
+  "integration": {
+   "method": "harmony",
+   "harmony_max_iter": 20,
+   "scvi_n_latent": 30,
+   "scvi_max_epochs": null,
+   "label_key": "Celltype",
+   "enabled": true,
+   "batch_key": "assay"
+  },
+  "clustering": {
+   "method": "leiden",
+   "resolution": 0.8,
+   "n_markers": 50
+  },
+  "annotation": {
+   "method": "marker_scoring",
+   "marker_panel": "auto",
+   "custom_markers": null,
+   "manual_labels": {},
+   "export_seurat_rds": false
+  },
+  "differential_expression": {
+   "enabled": true,
+   "comparison": "pseudobulk_condition",
+   "group_by": "cell_type_predicted",
+   "condition_column": "Type",
+   "test_level": "Infl",
+   "reference_level": "NonI",
+   "covariates": [
+    "assay"
+   ],
+   "group_a": null,
+   "group_b": null,
+   "groups": [],
+   "min_cells": 10,
+   "alpha": 0.05,
+   "sample_column": "biosample_id"
+  },
+  "interpretation": {
+   "enabled": true,
+   "source": "auto",
+   "collections": [
+    "hallmark",
+    "go_bp"
+   ],
+   "run_ora": true,
+   "run_gsea": true,
+   "score_collection": "hallmark",
+   "gsea_on_markers": false,
+   "padj_cutoff": 0.05,
+   "lfc_cutoff": 1,
+   "min_set_size": 10,
+   "max_set_size": 500
+  },
+  "advanced": {
+   "modules": [
+    "cell_cycle",
+    "differential_abundance",
+    "trajectory",
+    "communication"
+   ],
+   "root_group": null,
+   "condition_column": "Type",
+   "test_level": "Infl",
+   "communication_permutations": 100,
+   "reference_level": "NonI",
+   "enabled": true
+  }
+ },
+ "software_versions": {
+  "import": {
+   "python": "3.12.16",
+   "scanpy": "1.12.5",
+   "anndata": "0.13.4",
+   "numpy": "2.5.4",
+   "scipy": "1.18.1",
+   "pandas": "2.3.3",
+   "scikit-learn": "1.9.1",
+   "h5py": "3.16.0"
+  },
+  "qc": {
+   "python": "3.12.16",
+   "scanpy": "1.12.5",
+   "anndata": "0.13.4",
+   "numpy": "2.5.4",
+   "scipy": "1.18.1",
+   "pandas": "2.3.3",
+   "scikit-learn": "1.9.1",
+   "scrublet": "0.2.3"
+  },
+  "normalisation": {
+   "python": "3.12.16",
+   "scanpy": "1.12.5",
+   "anndata": "0.13.4",
+   "numpy": "2.5.4",
+   "scipy": "1.18.1",
+   "pandas": "2.3.3",
+   "scikit-learn": "1.9.1",
+   "scikit-misc": "0.5.3"
+  },
+  "dimensionality_reduction": {
+   "python": "3.12.16",
+   "scanpy": "1.12.5",
+   "anndata": "0.13.4",
+   "numpy": "2.5.4",
+   "scipy": "1.18.1",
+   "pandas": "2.3.3",
+   "scikit-learn": "1.9.1",
+   "umap-learn": "0.6.0",
+   "pynndescent": "0.7.0"
+  },
+  "integration": {
+   "python": "3.12.16",
+   "scanpy": "1.12.5",
+   "anndata": "0.13.4",
+   "numpy": "2.5.4",
+   "scipy": "1.18.1",
+   "pandas": "2.3.3",
+   "scikit-learn": "1.9.1",
+   "harmonypy": "2.1.0"
+  },
+  "clustering": {
+   "python": "3.12.16",
+   "scanpy": "1.12.5",
+   "anndata": "0.13.4",
+   "numpy": "2.5.4",
+   "scipy": "1.18.1",
+   "pandas": "2.3.3",
+   "scikit-learn": "1.9.1",
+   "leidenalg": "0.12.0",
+   "igraph": "1.0.0"
+  },
+  "annotation": {
+   "python": "3.12.16",
+   "scanpy": "1.12.5",
+   "anndata": "0.13.4",
+   "numpy": "2.5.4",
+   "scipy": "1.18.1",
+   "pandas": "2.3.3",
+   "scikit-learn": "1.9.1"
+  },
+  "differential_expression": {
+   "python": "3.12.16",
+   "scanpy": "1.12.5",
+   "anndata": "0.13.4",
+   "numpy": "2.5.4",
+   "scipy": "1.18.1",
+   "pandas": "2.3.3",
+   "scikit-learn": "1.9.1",
+   "DESeq2 (R)": "1.48.2",
+   "edgeR (R)": "4.6.3",
+   "apeglm (R)": "1.30.0",
+   "R": "4.5.2"
+  },
+  "interpretation": {
+   "python": "3.12.16",
+   "scanpy": "1.12.5",
+   "anndata": "0.13.4",
+   "numpy": "2.5.4",
+   "scipy": "1.18.1",
+   "pandas": "2.3.3",
+   "scikit-learn": "1.9.1",
+   "clusterProfiler (R)": "4.16.0",
+   "fgsea (R)": "1.34.2",
+   "msigdbr (R)": "26.1.1"
+  },
+  "advanced": {
+   "python": "3.12.16",
+   "scanpy": "1.12.5",
+   "anndata": "0.13.4",
+   "numpy": "2.5.4",
+   "scipy": "1.18.1",
+   "pandas": "2.3.3",
+   "scikit-learn": "1.9.1",
+   "liana": "2.1.1"
+  }
+ },
+ "stages": [
+  {
+   "key": "import",
+   "position": 0,
+   "status": "completed",
+   "progress": 1.0,
+   "message": "Completed",
+   "summary": {
+    "source": "AnnData (H5AD)",
+    "n_cells": 152509,
+    "n_genes": 26766,
+    "n_samples": 96,
+    "cells_per_sample": {
+     "N104689_N": 14300,
+     "N51_LP_A": 6915,
+     "I130084_L": 6660,
+     "N128400_L": 6539,
+     "N124246_L": 6229,
+     "N104152_N": 5966,
+     "N154787_L2": 5148,
+     "N130084_L": 4929,
+     "N10_LP_B": 4444,
+     "N46_LP_A": 4151,
+     "N10_LP_A": 4091,
+     "N107306_L1": 3739,
+     "I114902_N": 3675,
+     "N20_LP_B": 3465,
+     "N51_LP_B": 3296,
+     "H139073_N": 3121,
+     "I121881_L": 2830,
+     "I117351_L": 2705,
+     "N107306_L2": 2479,
+     "N114902_N": 2452,
+     "N154787_L1": 2386,
+     "N110204_L": 2297,
+     "H197396_N4": 2246,
+     "H197396_N3": 2216,
+     "N46_LP_B": 2129,
+     "H197396_N2": 2020,
+     "N18_LP_B": 2001,
+     "N17_LP_A": 1962,
+     "N15_LP_B": 1940,
+     "N18_LP_A": 1775,
+     "N13_LP_B": 1636,
+     "N1108147_L": 1599,
+     "I121881_E": 1574,
+     "N13_LP_A": 1540,
+     "I130084_E": 1413,
+     "N15_LP_A": 1379,
+     "H197396_N1": 1371,
+     "N128208_L": 1317,
+     "N16_LP_A": 1267,
+     "N21_LP_A": 1229,
+     "N175041_N2": 1120,
+     "N21_LP_B": 1101,
+     "N175041_N1": 1046,
+     "N128624_L": 1031,
+     "I175041_N2": 999,
+     "I175041_N1": 962,
+     "N17_LP_B": 955,
+     "N11_LP_B": 887,
+     "N20_LP_A": 776,
+     "N105446_L": 758,
+     "H106265_N": 620,
+     "N128400_E": 617,
+     "N124246_E": 593,
+     "N178961_L": 525,
+     "N107306_E1": 525,
+     "N16_LP_B": 522,
+     "N110204_E": 495,
+     "N8_LP_B": 479,
+     "H180844_N1": 424,
+     "N164969_E": 348,
+     "N13_Epi_A": 345,
+     "N130084_E": 342,
+     "N11_LP_A": 299,
+     "N15_Epi_B": 287,
+     "N8_LP_A": 272,
+     "N20_Epi_B": 270,
+     "N13_Epi_B": 269,
+     "N128624_E": 267,
+     "N10_Epi_A": 253,
+     "N154787_E2": 233,
+     "N117351_L": 231,
+     "H180844_N2": 210,
+     "N107306_E2": 204,
+     "N15_Epi_A": 201,
+     "N10_Epi_B": 199,
+     "N164969_L": 159,
+     "N154787_E1": 121,
+     "N11_Epi_B": 107,
+     "N16_Epi_A": 105,
+     "N11_Epi_A": 94,
+     "N46_Epi_A": 90,
+     "N21_Epi_A": 86,
+     "N18_Epi_A": 84,
+     "N178961_E": 74,
+     "N17_Epi_B": 73,
+     "N51_Epi_B": 72,
+     "N18_Epi_B": 68,
+     "N16_Epi_B": 50,
+     "N128208_E": 49,
+     "N17_Epi_A": 38,
+     "N20_Epi_A": 38,
+     "N51_Epi_A": 37,
+     "N21_Epi_B": 30,
+     "N46_Epi_B": 24,
+     "N8_Epi_A": 13,
+     "N8_Epi_B": 1
+    },
+    "median_counts_per_barcode": 1808.0,
+    "velocity_layers": false,
+    "metadata_columns": {
+     "Type": {
+      "type": "categorical",
+      "levels": [
+       "Heal",
+       "Infl",
+       "NonI"
+      ]
+     },
+     "donor_id": {
+      "type": "categorical",
+      "levels": [
+       "104152",
+       "104689",
+       "105446",
+       "106265",
+       "107306",
+       "110204",
+       "114902",
+       "117351",
+       "121881",
+       "124246",
+       "128208",
+       "128400",
+       "128624",
+       "130084",
+       "139073",
+       "154787",
+       "164969",
+       "175041",
+       "178961",
+       "180844",
+       "197396",
+       "1108147",
+       "N10",
+       "N11",
+       "N13",
+       "N15",
+       "N16",
+       "N17",
+       "N18",
+       "N20",
+       "N21",
+       "N46",
+       "N51",
+       "N8"
+      ]
+     },
+     "Layer": {
+      "type": "categorical",
+      "levels": [
+       "E",
+       "L",
+       "N"
+      ]
+     },
+     "Celltype": {
+      "type": "categorical",
+      "levels": [
+       "B cells",
+       "B cells AICDA LRMP",
+       "DC1",
+       "DC2 CD1D",
+       "DC2 CD1D-",
+       "ILCs",
+       "Immune Cycling cells",
+       "Macrophages",
+       "Macrophages CCL3 CCL4",
+       "Macrophages LYVE1",
+       "Macrophages Metallothionein",
+       "Mast cells",
+       "Mature DCs",
+       "Monocytes CHI3L1 CYP27A1",
+       "Monocytes S100A8 S100A9",
+       "NK cells KLRF1 CD3G-",
+       "NK-like cells ID3 ENTPD1",
+       "Plasma cells",
+       "T cells CD4 FOSB",
+       "T cells CD4 IL17A",
+       "T cells CD8",
+       "T cells CD8 KLRG1",
+       "T cells Naive CD4",
+       "T cells OGT",
+       "Tregs"
+      ]
+     },
+     "assay_ontology_term_id": {
+      "type": "categorical",
+      "levels": [
+       "EFO:0009899",
+       "EFO:0009901",
+       "EFO:0009922"
+      ]
+     },
+     "disease_ontology_term_id": {
+      "type": "categorical",
+      "levels": [
+       "MONDO:0005011",
+       "PATO:0000461"
+      ]
+     },
+     "suspension_type": {
+      "type": "categorical",
+      "levels": [
+       "cell"
+      ]
+     },
+     "is_primary_data": {
+      "type": "categorical",
+      "levels": [
+       "False",
+       "True"
+      ]
+     },
+     "cell_type_ontology_term_id": {
+      "type": "categorical",
+      "levels": [
+       "CL:0000084",
+       "CL:0000097",
+       "CL:0000235",
+       "CL:0000236",
+       "CL:0000451",
+       "CL:0000576",
+       "CL:0000623",
+       "CL:0000624",
+       "CL:0000625",
+       "CL:0000738",
+       "CL:0000784",
+       "CL:0000786",
+       "CL:0000815",
+       "CL:0000898",
+       "CL:0000990",
+       "CL:0001065",
+       "unknown"
+      ]
+     },
+     "self_reported_ethnicity_ontology_term_id": {
+      "type": "categorical",
+      "levels": [
+       "unknown"
+      ]
+     },
+     "age group": {
+      "type": "categorical",
+      "levels": [
+       "20-24",
+       "25-29",
+       "30-34",
+       "35-39",
+       "40-44",
+       "45-49",
+       "50-54",
+       "55-59",
+       "60-64",
+       "70-74"
+      ]
+     },
+     "sex_ontology_term_id": {
+      "type": "categorical",
+      "levels": [
+       "PATO:0000383",
+       "PATO:0000384"
+      ]
+     },
+     "development_stage_ontology_term_id": {
+      "type": "categorical",
+      "levels": [
+       "HsapDv:0000237",
+       "HsapDv:0000238",
+       "HsapDv:0000239",
+       "HsapDv:0000240",
+       "HsapDv:0000241",
+       "HsapDv:0000242",
+       "HsapDv:0000258"
+      ]
+     },
+     "tissue_type": {
+      "type": "categorical",
+      "levels": [
+       "tissue"
+      ]
+     },
+     "tissue_ontology_term_id": {
+      "type": "categorical",
+      "levels": [
+       "UBERON:0000397",
+       "UBERON:0001155",
+       "UBERON:0001156",
+       "UBERON:0001158",
+       "UBERON:0001159",
+       "UBERON:0005636",
+       "UBERON:0007177",
+       "UBERON:7770006",
+       "UBERON:7770008",
+       "UBERON:8600136",
+       "UBERON:8600137",
+       "UBERON:8600139"
+      ]
+     },
+     "cell_type": {
+      "type": "categorical",
+      "levels": [
+       "B cell",
+       "CD4-positive, alpha-beta T cell",
+       "CD8-positive, alpha-beta T cell",
+       "T cell",
+       "conventional dendritic cell",
+       "dendritic cell",
+       "innate lymphoid cell",
+       "leukocyte",
+       "macrophage",
+       "mast cell",
+       "monocyte",
+       "naive T cell",
+       "natural killer cell",
+       "plasma cell",
+       "plasmacytoid dendritic cell",
+       "regulatory T cell",
+       "unknown"
+      ]
+     },
+     "assay": {
+      "type": "categorical",
+      "levels": [
+       "10x 3' v1",
+       "10x 3' v2",
+       "10x 3' v3"
+      ]
+     },
+     "disease": {
+      "type": "categorical",
+      "levels": [
+       "Crohn disease",
+       "normal"
+      ]
+     },
+     "sex": {
+      "type": "categorical",
+      "levels": [
+       "female",
+       "male"
+      ]
+     },
+     "tissue": {
+      "type": "categorical",
+      "levels": [
+       "ascending colon",
+       "caecum epithelium",
+       "caecum lamina propria",
+       "colon",
+       "colonic epithelium",
+       "descending colon",
+       "lamina propria of mucosa of colon",
+       "sigmoid colon",
+       "sigmoid colon epithelium",
+       "sigmoid colon lamina propria",
+       "transverse colon epithelium",
+       "transverse colon lamina propria"
+      ]
+     },
+     "self_reported_ethnicity": {
+      "type": "categorical",
+      "levels": [
+       "unknown"
+      ]
+     },
+     "development_stage": {
+      "type": "categorical",
+      "levels": [
+       "adult stage",
+       "eighth decade stage",
+       "fifth decade stage",
+       "fourth decade stage",
+       "seventh decade stage",
+       "sixth decade stage",
+       "third decade stage"
+      ]
+     },
+     "n_genes": {
+      "type": "numeric",
+      "levels": []
+     },
+     "n_counts": {
+      "type": "numeric",
+      "levels": []
+     }
+    },
+    "warnings": [
+     "X did not hold raw counts; raw counts were taken from .raw.",
+     "The genes were indexed by database identifiers, so symbols were taken from var['feature_name'] (26,766 of 26,766 genes). The original identifiers are kept in var['gene_ids']. Marker-based annotation, the marker tables and pathway analysis all need symbols.",
+     "This looks like an unfiltered (raw) matrix that still contains empty droplets. The QC stage will remove low-count barcodes, but dedicated cell calling (Cell Ranger's filtered matrix, or EmptyDrops/CellBender upstream) is preferable."
+    ]
+   },
+   "error": null,
+   "started_at": "2026-11-25T19:42:51.335942Z",
+   "finished_at": "2026-11-25T19:43:54.004953Z"
+  },
+  {
+   "key": "qc",
+   "position": 1,
+   "status": "completed",
+   "progress": 1.0,
+   "message": "Completed",
+   "summary": {
+    "threshold_mode": "median \u00b1 MAD per sample",
+    "cells_before": 152509,
+    "cells_after": 133889,
+    "removed_low_quality": 17996,
+    "removed_doublets": 624,
+    "predicted_doublets": 624,
+    "doublet_detection": "Scrublet, run separately per sample on cells passing QC; expected rate 0.8% per 1,000 cells unless set",
+    "genes_before": 26766,
+    "genes_after": 22214,
+    "median_genes_per_cell": 710.0,
+    "median_counts_per_cell": 2053.0,
+    "median_pct_mt": 4.65686,
+    "ambient_rna": "Not assessed: ambient RNA estimation (SoupX, CellBender) needs the unfiltered droplet matrix alongside the filtered one.",
+    "metadata_columns": {
+     "Type": {
+      "type": "categorical",
+      "levels": [
+       "Heal",
+       "Infl",
+       "NonI"
+      ]
+     },
+     "donor_id": {
+      "type": "categorical",
+      "levels": [
+       "104152",
+       "104689",
+       "105446",
+       "106265",
+       "107306",
+       "110204",
+       "114902",
+       "117351",
+       "121881",
+       "124246",
+       "128208",
+       "128400",
+       "128624",
+       "130084",
+       "139073",
+       "154787",
+       "164969",
+       "175041",
+       "178961",
+       "180844",
+       "197396",
+       "1108147",
+       "N10",
+       "N11",
+       "N13",
+       "N15",
+       "N16",
+       "N17",
+       "N18",
+       "N20",
+       "N21",
+       "N46",
+       "N51",
+       "N8"
+      ]
+     },
+     "Layer": {
+      "type": "categorical",
+      "levels": [
+       "E",
+       "L",
+       "N"
+      ]
+     },
+     "Celltype": {
+      "type": "categorical",
+      "levels": [
+       "B cells",
+       "B cells AICDA LRMP",
+       "DC1",
+       "DC2 CD1D",
+       "DC2 CD1D-",
+       "ILCs",
+       "Immune Cycling cells",
+       "Macrophages",
+       "Macrophages CCL3 CCL4",
+       "Macrophages LYVE1",
+       "Macrophages Metallothionein",
+       "Mast cells",
+       "Mature DCs",
+       "Monocytes CHI3L1 CYP27A1",
+       "Monocytes S100A8 S100A9",
+       "NK cells KLRF1 CD3G-",
+       "NK-like cells ID3 ENTPD1",
+       "Plasma cells",
+       "T cells CD4 FOSB",
+       "T cells CD4 IL17A",
+       "T cells CD8",
+       "T cells CD8 KLRG1",
+       "T cells Naive CD4",
+       "T cells OGT",
+       "Tregs"
+      ]
+     },
+     "assay_ontology_term_id": {
+      "type": "categorical",
+      "levels": [
+       "EFO:0009899",
+       "EFO:0009901",
+       "EFO:0009922"
+      ]
+     },
+     "disease_ontology_term_id": {
+      "type": "categorical",
+      "levels": [
+       "MONDO:0005011",
+       "PATO:0000461"
+      ]
+     },
+     "suspension_type": {
+      "type": "categorical",
+      "levels": [
+       "cell"
+      ]
+     },
+     "is_primary_data": {
+      "type": "categorical",
+      "levels": [
+       "False",
+       "True"
+      ]
+     },
+     "cell_type_ontology_term_id": {
+      "type": "categorical",
+      "levels": [
+       "CL:0000084",
+       "CL:0000097",
+       "CL:0000235",
+       "CL:0000236",
+       "CL:0000451",
+       "CL:0000576",
+       "CL:0000623",
+       "CL:0000624",
+       "CL:0000625",
+       "CL:0000738",
+       "CL:0000784",
+       "CL:0000786",
+       "CL:0000815",
+       "CL:0000898",
+       "CL:0000990",
+       "CL:0001065",
+       "unknown"
+      ]
+     },
+     "self_reported_ethnicity_ontology_term_id": {
+      "type": "categorical",
+      "levels": [
+       "unknown"
+      ]
+     },
+     "age group": {
+      "type": "categorical",
+      "levels": [
+       "20-24",
+       "25-29",
+       "30-34",
+       "35-39",
+       "40-44",
+       "45-49",
+       "50-54",
+       "55-59",
+       "60-64",
+       "70-74"
+      ]
+     },
+     "sex_ontology_term_id": {
+      "type": "categorical",
+      "levels": [
+       "PATO:0000383",
+       "PATO:0000384"
+      ]
+     },
+     "development_stage_ontology_term_id": {
+      "type": "categorical",
+      "levels": [
+       "HsapDv:0000237",
+       "HsapDv:0000238",
+       "HsapDv:0000239",
+       "HsapDv:0000240",
+       "HsapDv:0000241",
+       "HsapDv:0000242",
+       "HsapDv:0000258"
+      ]
+     },
+     "tissue_type": {
+      "type": "categorical",
+      "levels": [
+       "tissue"
+      ]
+     },
+     "tissue_ontology_term_id": {
+      "type": "categorical",
+      "levels": [
+       "UBERON:0000397",
+       "UBERON:0001155",
+       "UBERON:0001156",
+       "UBERON:0001158",
+       "UBERON:0001159",
+       "UBERON:0005636",
+       "UBERON:0007177",
+       "UBERON:7770006",
+       "UBERON:7770008",
+       "UBERON:8600136",
+       "UBERON:8600137",
+       "UBERON:8600139"
+      ]
+     },
+     "cell_type": {
+      "type": "categorical",
+      "levels": [
+       "B cell",
+       "CD4-positive, alpha-beta T cell",
+       "CD8-positive, alpha-beta T cell",
+       "T cell",
+       "conventional dendritic cell",
+       "dendritic cell",
+       "innate lymphoid cell",
+       "leukocyte",
+       "macrophage",
+       "mast cell",
+       "monocyte",
+       "naive T cell",
+       "natural killer cell",
+       "plasma cell",
+       "plasmacytoid dendritic cell",
+       "regulatory T cell",
+       "unknown"
+      ]
+     },
+     "assay": {
+      "type": "categorical",
+      "levels": [
+       "10x 3' v1",
+       "10x 3' v2",
+       "10x 3' v3"
+      ]
+     },
+     "disease": {
+      "type": "categorical",
+      "levels": [
+       "Crohn disease",
+       "normal"
+      ]
+     },
+     "sex": {
+      "type": "categorical",
+      "levels": [
+       "female",
+       "male"
+      ]
+     },
+     "tissue": {
+      "type": "categorical",
+      "levels": [
+       "ascending colon",
+       "caecum epithelium",
+       "caecum lamina propria",
+       "colon",
+       "colonic epithelium",
+       "descending colon",
+       "lamina propria of mucosa of colon",
+       "sigmoid colon",
+       "sigmoid colon epithelium",
+       "sigmoid colon lamina propria",
+       "transverse colon epithelium",
+       "transverse colon lamina propria"
+      ]
+     },
+     "self_reported_ethnicity": {
+      "type": "categorical",
+      "levels": [
+       "unknown"
+      ]
+     },
+     "development_stage": {
+      "type": "categorical",
+      "levels": [
+       "adult stage",
+       "eighth decade stage",
+       "fifth decade stage",
+       "fourth decade stage",
+       "seventh decade stage",
+       "sixth decade stage",
+       "third decade stage"
+      ]
+     },
+     "predicted_doublet": {
+      "type": "categorical",
+      "levels": [
+       "False"
+      ]
+     },
+     "n_genes": {
+      "type": "numeric",
+      "levels": []
+     },
+     "n_counts": {
+      "type": "numeric",
+      "levels": []
+     },
+     "n_genes_by_counts": {
+      "type": "numeric",
+      "levels": []
+     },
+     "total_counts": {
+      "type": "numeric",
+      "levels": []
+     },
+     "total_counts_mt": {
+      "type": "numeric",
+      "levels": []
+     },
+     "pct_counts_mt": {
+      "type": "numeric",
+      "levels": []
+     },
+     "total_counts_ribo": {
+      "type": "numeric",
+      "levels": []
+     },
+     "pct_counts_ribo": {
+      "type": "numeric",
+      "levels": []
+     },
+     "total_counts_hb": {
+      "type": "numeric",
+      "levels": []
+     },
+     "pct_counts_hb": {
+      "type": "numeric",
+      "levels": []
+     },
+     "doublet_score": {
+      "type": "numeric",
+      "levels": []
+     }
+    },
+    "warnings": [
+     "Scrublet needs at least 100 cells per sample; skipped for: H106265_N, H180844_N1, H180844_N2, N11_Epi_A, N128208_E, N154787_E1, N16_Epi_A, N16_Epi_B, N178961_E, N17_Epi_A, N17_Epi_B, N18_Epi_A, N18_Epi_B, N20_Epi_A, N21_Epi_A, N21_Epi_B, N46_Epi_A, N46_Epi_B, N51_Epi_A, N51_Epi_B, N8_Epi_A, N8_Epi_B."
+    ]
+   },
+   "error": null,
+   "started_at": "2026-11-25T19:43:54.130018Z",
+   "finished_at": "2026-11-25T19:53:09.191825Z"
+  },
+  {
+   "key": "normalisation",
+   "position": 2,
+   "status": "completed",
+   "progress": 1.0,
+   "message": "Completed",
+   "summary": {
+    "method": "Library-size normalisation + log1p",
+    "target_sum": 10000,
+    "hvg_method": "Seurat v3 (variance-stabilising fit on counts)",
+    "n_highly_variable": 2000,
+    "hvg_selected_per_sample": false,
+    "pca_input": "scaled log-normalised expression of HVGs (unit variance, clipped)",
+    "note": null,
+    "top_variable_genes": [
+     "HBB",
+     "MT1G",
+     "CXCL9",
+     "MT1M",
+     "HBA2",
+     "PTGDS",
+     "MT1X",
+     "MT1H",
+     "CXCL10",
+     "MT1E"
+    ],
+    "warnings": []
+   },
+   "error": null,
+   "started_at": "2026-11-25T20:15:35.932737Z",
+   "finished_at": "2026-11-25T20:17:44.354428Z"
+  },
+  {
+   "key": "dimensionality_reduction",
+   "position": 3,
+   "status": "completed",
+   "progress": 1.0,
+   "message": "Completed",
+   "summary": {
+    "n_pcs_computed": 50,
+    "n_pcs_used": 30,
+    "variance_explained_by_used_pcs": 0.226285,
+    "n_neighbors": 15,
+    "tsne_computed": false,
+    "umap_trustworthiness": 0.961,
+    "trustworthiness_note": "Share of each cell's UMAP neighbours that are also neighbours in PCA space (1 = perfectly preserved), on up to 5,000 cells.",
+    "warnings": []
+   },
+   "error": null,
+   "started_at": "2026-11-25T20:17:44.362180Z",
+   "finished_at": "2026-11-25T20:23:23.383772Z"
+  },
+  {
+   "key": "integration",
+   "position": 4,
+   "status": "completed",
+   "progress": 1.0,
+   "message": "Completed",
+   "summary": {
+    "method": "Harmony (corrects the PCA embedding)",
+    "batch_key": "assay",
+    "n_batches": 3,
+    "representation": "X_harmony",
+    "mixing_before": 0.163,
+    "mixing_after": 0.581,
+    "batch_silhouette_before": -0.051,
+    "batch_silhouette_after": -0.091,
+    "label_silhouette_before": 0.121,
+    "label_silhouette_after": 0.157,
+    "cluster_agreement_ari": 0.42,
+    "single_batch_clusters_before": 17,
+    "single_batch_clusters_after": 4,
+    "note": "Integration changes the embedding used for clustering and visualisation. Counts are not altered; differential expression uses raw counts with sample as the unit.",
+    "warnings": []
+   },
+   "error": null,
+   "started_at": "2026-11-25T20:24:57.081529Z",
+   "finished_at": "2026-11-25T20:30:08.298823Z"
+  },
+  {
+   "key": "clustering",
+   "position": 5,
+   "status": "completed",
+   "progress": 1.0,
+   "message": "Completed",
+   "summary": {
+    "method": "Leiden",
+    "resolution": 0.8,
+    "n_clusters": 25,
+    "clusters": [
+     "0",
+     "1",
+     "2",
+     "3",
+     "4",
+     "5",
+     "6",
+     "7",
+     "8",
+     "9",
+     "10",
+     "11",
+     "12",
+     "13",
+     "14",
+     "15",
+     "16",
+     "17",
+     "18",
+     "19",
+     "20",
+     "21",
+     "22",
+     "23",
+     "24"
+    ],
+    "cluster_sizes": {
+     "0": 2033,
+     "1": 11147,
+     "2": 1000,
+     "3": 193,
+     "4": 39,
+     "5": 4906,
+     "6": 4964,
+     "7": 2484,
+     "8": 13248,
+     "9": 13206,
+     "10": 8904,
+     "11": 2827,
+     "12": 827,
+     "13": 13532,
+     "14": 1515,
+     "15": 8654,
+     "16": 21825,
+     "17": 4934,
+     "18": 5396,
+     "19": 8119,
+     "20": 452,
+     "21": 1030,
+     "22": 2043,
+     "23": 246,
+     "24": 365
+    },
+    "silhouette": 0.092,
+    "representation": "X_harmony",
+    "marker_test": "Wilcoxon rank-sum, cluster vs all other cells, Benjamini-Hochberg",
+    "metadata_columns": {
+     "Type": {
+      "type": "categorical",
+      "levels": [
+       "Heal",
+       "Infl",
+       "NonI"
+      ]
+     },
+     "donor_id": {
+      "type": "categorical",
+      "levels": [
+       "104152",
+       "104689",
+       "105446",
+       "106265",
+       "107306",
+       "110204",
+       "114902",
+       "117351",
+       "121881",
+       "124246",
+       "128208",
+       "128400",
+       "128624",
+       "130084",
+       "139073",
+       "154787",
+       "164969",
+       "175041",
+       "178961",
+       "180844",
+       "197396",
+       "1108147",
+       "N10",
+       "N11",
+       "N13",
+       "N15",
+       "N16",
+       "N17",
+       "N18",
+       "N20",
+       "N21",
+       "N46",
+       "N51",
+       "N8"
+      ]
+     },
+     "Layer": {
+      "type": "categorical",
+      "levels": [
+       "E",
+       "L",
+       "N"
+      ]
+     },
+     "Celltype": {
+      "type": "categorical",
+      "levels": [
+       "B cells",
+       "B cells AICDA LRMP",
+       "DC1",
+       "DC2 CD1D",
+       "DC2 CD1D-",
+       "ILCs",
+       "Immune Cycling cells",
+       "Macrophages",
+       "Macrophages CCL3 CCL4",
+       "Macrophages LYVE1",
+       "Macrophages Metallothionein",
+       "Mast cells",
+       "Mature DCs",
+       "Monocytes CHI3L1 CYP27A1",
+       "Monocytes S100A8 S100A9",
+       "NK cells KLRF1 CD3G-",
+       "NK-like cells ID3 ENTPD1",
+       "Plasma cells",
+       "T cells CD4 FOSB",
+       "T cells CD4 IL17A",
+       "T cells CD8",
+       "T cells CD8 KLRG1",
+       "T cells Naive CD4",
+       "T cells OGT",
+       "Tregs"
+      ]
+     },
+     "assay_ontology_term_id": {
+      "type": "categorical",
+      "levels": [
+       "EFO:0009899",
+       "EFO:0009901",
+       "EFO:0009922"
+      ]
+     },
+     "disease_ontology_term_id": {
+      "type": "categorical",
+      "levels": [
+       "MONDO:0005011",
+       "PATO:0000461"
+      ]
+     },
+     "suspension_type": {
+      "type": "categorical",
+      "levels": [
+       "cell"
+      ]
+     },
+     "is_primary_data": {
+      "type": "categorical",
+      "levels": [
+       "False",
+       "True"
+      ]
+     },
+     "cell_type_ontology_term_id": {
+      "type": "categorical",
+      "levels": [
+       "CL:0000084",
+       "CL:0000097",
+       "CL:0000235",
+       "CL:0000236",
+       "CL:0000451",
+       "CL:0000576",
+       "CL:0000623",
+       "CL:0000624",
+       "CL:0000625",
+       "CL:0000738",
+       "CL:0000784",
+       "CL:0000786",
+       "CL:0000815",
+       "CL:0000898",
+       "CL:0000990",
+       "CL:0001065",
+       "unknown"
+      ]
+     },
+     "self_reported_ethnicity_ontology_term_id": {
+      "type": "categorical",
+      "levels": [
+       "unknown"
+      ]
+     },
+     "age group": {
+      "type": "categorical",
+      "levels": [
+       "20-24",
+       "25-29",
+       "30-34",
+       "35-39",
+       "40-44",
+       "45-49",
+       "50-54",
+       "55-59",
+       "60-64",
+       "70-74"
+      ]
+     },
+     "sex_ontology_term_id": {
+      "type": "categorical",
+      "levels": [
+       "PATO:0000383",
+       "PATO:0000384"
+      ]
+     },
+     "development_stage_ontology_term_id": {
+      "type": "categorical",
+      "levels": [
+       "HsapDv:0000237",
+       "HsapDv:0000238",
+       "HsapDv:0000239",
+       "HsapDv:0000240",
+       "HsapDv:0000241",
+       "HsapDv:0000242",
+       "HsapDv:0000258"
+      ]
+     },
+     "tissue_type": {
+      "type": "categorical",
+      "levels": [
+       "tissue"
+      ]
+     },
+     "tissue_ontology_term_id": {
+      "type": "categorical",
+      "levels": [
+       "UBERON:0000397",
+       "UBERON:0001155",
+       "UBERON:0001156",
+       "UBERON:0001158",
+       "UBERON:0001159",
+       "UBERON:0005636",
+       "UBERON:0007177",
+       "UBERON:7770006",
+       "UBERON:7770008",
+       "UBERON:8600136",
+       "UBERON:8600137",
+       "UBERON:8600139"
+      ]
+     },
+     "cell_type": {
+      "type": "categorical",
+      "levels": [
+       "B cell",
+       "CD4-positive, alpha-beta T cell",
+       "CD8-positive, alpha-beta T cell",
+       "T cell",
+       "conventional dendritic cell",
+       "dendritic cell",
+       "innate lymphoid cell",
+       "leukocyte",
+       "macrophage",
+       "mast cell",
+       "monocyte",
+       "naive T cell",
+       "natural killer cell",
+       "plasma cell",
+       "plasmacytoid dendritic cell",
+       "regulatory T cell",
+       "unknown"
+      ]
+     },
+     "assay": {
+      "type": "categorical",
+      "levels": [
+       "10x 3' v1",
+       "10x 3' v2",
+       "10x 3' v3"
+      ]
+     },
+     "disease": {
+      "type": "categorical",
+      "levels": [
+       "Crohn disease",
+       "normal"
+      ]
+     },
+     "sex": {
+      "type": "categorical",
+      "levels": [
+       "female",
+       "male"
+      ]
+     },
+     "tissue": {
+      "type": "categorical",
+      "levels": [
+       "ascending colon",
+       "caecum epithelium",
+       "caecum lamina propria",
+       "colon",
+       "colonic epithelium",
+       "descending colon",
+       "lamina propria of mucosa of colon",
+       "sigmoid colon",
+       "sigmoid colon epithelium",
+       "sigmoid colon lamina propria",
+       "transverse colon epithelium",
+       "transverse colon lamina propria"
+      ]
+     },
+     "self_reported_ethnicity": {
+      "type": "categorical",
+      "levels": [
+       "unknown"
+      ]
+     },
+     "development_stage": {
+      "type": "categorical",
+      "levels": [
+       "adult stage",
+       "eighth decade stage",
+       "fifth decade stage",
+       "fourth decade stage",
+       "seventh decade stage",
+       "sixth decade stage",
+       "third decade stage"
+      ]
+     },
+     "predicted_doublet": {
+      "type": "categorical",
+      "levels": [
+       "False"
+      ]
+     },
+     "cluster": {
+      "type": "categorical",
+      "levels": [
+       "0",
+       "1",
+       "2",
+       "3",
+       "4",
+       "5",
+       "6",
+       "7",
+       "8",
+       "9",
+       "10",
+       "11",
+       "12",
+       "13",
+       "14",
+       "15",
+       "16",
+       "17",
+       "18",
+       "19",
+       "20",
+       "21",
+       "22",
+       "23",
+       "24"
+      ]
+     },
+     "n_genes": {
+      "type": "numeric",
+      "levels": []
+     },
+     "n_counts": {
+      "type": "numeric",
+      "levels": []
+     },
+     "n_genes_by_counts": {
+      "type": "numeric",
+      "levels": []
+     },
+     "total_counts": {
+      "type": "numeric",
+      "levels": []
+     },
+     "total_counts_mt": {
+      "type": "numeric",
+      "levels": []
+     },
+     "pct_counts_mt": {
+      "type": "numeric",
+      "levels": []
+     },
+     "total_counts_ribo": {
+      "type": "numeric",
+      "levels": []
+     },
+     "pct_counts_ribo": {
+      "type": "numeric",
+      "levels": []
+     },
+     "total_counts_hb": {
+      "type": "numeric",
+      "levels": []
+     },
+     "pct_counts_hb": {
+      "type": "numeric",
+      "levels": []
+     },
+     "doublet_score": {
+      "type": "numeric",
+      "levels": []
+     }
+    },
+    "warnings": [
+     "Cluster(s) 3, 23 consist almost entirely of one sample. Consider batch integration, unless the samples are biologically different."
+    ]
+   },
+   "error": null,
+   "started_at": "2026-11-25T20:31:48.289549Z",
+   "finished_at": "2026-11-25T20:44:45.781208Z"
+  },
+  {
+   "key": "annotation",
+   "position": 6,
+   "status": "completed",
+   "progress": 1.0,
+   "message": "Completed",
+   "summary": {
+    "method": "Marker-set scoring per cluster",
+    "marker_panel": "Major tissue lineages",
+    "panel_source": "Lineage markers common across human tissue atlases (e.g. Tabula Sapiens, Science 376:eabl4896).",
+    "panel_choice": "automatic: the dataset's tissue is not blood (tissue: ascending colon, caecum epithelium, caecum lamina propria; tissue_type: tissue; disease: Crohn disease)",
+    "labels": {
+     "0": "Proliferating cells",
+     "1": "Myeloid cells",
+     "2": "Myeloid cells",
+     "3": "Myeloid cells",
+     "4": "Myeloid cells",
+     "5": "Myeloid cells",
+     "6": "T cells",
+     "7": "T cells",
+     "8": "T cells",
+     "9": "NK cells",
+     "10": "T cells",
+     "11": "Plasma cells",
+     "12": "T cells",
+     "13": "Plasma cells",
+     "14": "Plasma cells",
+     "15": "Plasma cells",
+     "16": "Plasma cells",
+     "17": "Plasma cells",
+     "18": "Mast cells",
+     "19": "B cells",
+     "20": "B cells",
+     "21": "Plasma cells",
+     "22": "Plasma cells",
+     "23": "Plasma cells",
+     "24": "Myeloid cells"
+    },
+    "confidence": {
+     "0": "high",
+     "1": "high",
+     "2": "high",
+     "3": "medium",
+     "4": "high",
+     "5": "high",
+     "6": "high",
+     "7": "high",
+     "8": "high",
+     "9": "medium",
+     "10": "high",
+     "11": "high",
+     "12": "high",
+     "13": "high",
+     "14": "high",
+     "15": "high",
+     "16": "high",
+     "17": "high",
+     "18": "high",
+     "19": "high",
+     "20": "high",
+     "21": "high",
+     "22": "high",
+     "23": "high",
+     "24": "medium"
+    },
+    "n_cell_types": 7,
+    "n_manual": 0,
+    "n_low_confidence": 0,
+    "caution": "Automated labels are hypotheses based on marker genes. Confirm them with independent markers, reference data or orthogonal assays before reporting cell identities.",
+    "metadata_columns": {
+     "Type": {
+      "type": "categorical",
+      "levels": [
+       "Heal",
+       "Infl",
+       "NonI"
+      ]
+     },
+     "donor_id": {
+      "type": "categorical",
+      "levels": [
+       "104152",
+       "104689",
+       "105446",
+       "106265",
+       "107306",
+       "110204",
+       "114902",
+       "117351",
+       "121881",
+       "124246",
+       "128208",
+       "128400",
+       "128624",
+       "130084",
+       "139073",
+       "154787",
+       "164969",
+       "175041",
+       "178961",
+       "180844",
+       "197396",
+       "1108147",
+       "N10",
+       "N11",
+       "N13",
+       "N15",
+       "N16",
+       "N17",
+       "N18",
+       "N20",
+       "N21",
+       "N46",
+       "N51",
+       "N8"
+      ]
+     },
+     "Layer": {
+      "type": "categorical",
+      "levels": [
+       "E",
+       "L",
+       "N"
+      ]
+     },
+     "Celltype": {
+      "type": "categorical",
+      "levels": [
+       "B cells",
+       "B cells AICDA LRMP",
+       "DC1",
+       "DC2 CD1D",
+       "DC2 CD1D-",
+       "ILCs",
+       "Immune Cycling cells",
+       "Macrophages",
+       "Macrophages CCL3 CCL4",
+       "Macrophages LYVE1",
+       "Macrophages Metallothionein",
+       "Mast cells",
+       "Mature DCs",
+       "Monocytes CHI3L1 CYP27A1",
+       "Monocytes S100A8 S100A9",
+       "NK cells KLRF1 CD3G-",
+       "NK-like cells ID3 ENTPD1",
+       "Plasma cells",
+       "T cells CD4 FOSB",
+       "T cells CD4 IL17A",
+       "T cells CD8",
+       "T cells CD8 KLRG1",
+       "T cells Naive CD4",
+       "T cells OGT",
+       "Tregs"
+      ]
+     },
+     "assay_ontology_term_id": {
+      "type": "categorical",
+      "levels": [
+       "EFO:0009899",
+       "EFO:0009901",
+       "EFO:0009922"
+      ]
+     },
+     "disease_ontology_term_id": {
+      "type": "categorical",
+      "levels": [
+       "MONDO:0005011",
+       "PATO:0000461"
+      ]
+     },
+     "suspension_type": {
+      "type": "categorical",
+      "levels": [
+       "cell"
+      ]
+     },
+     "is_primary_data": {
+      "type": "categorical",
+      "levels": [
+       "False",
+       "True"
+      ]
+     },
+     "cell_type_ontology_term_id": {
+      "type": "categorical",
+      "levels": [
+       "CL:0000084",
+       "CL:0000097",
+       "CL:0000235",
+       "CL:0000236",
+       "CL:0000451",
+       "CL:0000576",
+       "CL:0000623",
+       "CL:0000624",
+       "CL:0000625",
+       "CL:0000738",
+       "CL:0000784",
+       "CL:0000786",
+       "CL:0000815",
+       "CL:0000898",
+       "CL:0000990",
+       "CL:0001065",
+       "unknown"
+      ]
+     },
+     "self_reported_ethnicity_ontology_term_id": {
+      "type": "categorical",
+      "levels": [
+       "unknown"
+      ]
+     },
+     "age group": {
+      "type": "categorical",
+      "levels": [
+       "20-24",
+       "25-29",
+       "30-34",
+       "35-39",
+       "40-44",
+       "45-49",
+       "50-54",
+       "55-59",
+       "60-64",
+       "70-74"
+      ]
+     },
+     "sex_ontology_term_id": {
+      "type": "categorical",
+      "levels": [
+       "PATO:0000383",
+       "PATO:0000384"
+      ]
+     },
+     "development_stage_ontology_term_id": {
+      "type": "categorical",
+      "levels": [
+       "HsapDv:0000237",
+       "HsapDv:0000238",
+       "HsapDv:0000239",
+       "HsapDv:0000240",
+       "HsapDv:0000241",
+       "HsapDv:0000242",
+       "HsapDv:0000258"
+      ]
+     },
+     "tissue_type": {
+      "type": "categorical",
+      "levels": [
+       "tissue"
+      ]
+     },
+     "tissue_ontology_term_id": {
+      "type": "categorical",
+      "levels": [
+       "UBERON:0000397",
+       "UBERON:0001155",
+       "UBERON:0001156",
+       "UBERON:0001158",
+       "UBERON:0001159",
+       "UBERON:0005636",
+       "UBERON:0007177",
+       "UBERON:7770006",
+       "UBERON:7770008",
+       "UBERON:8600136",
+       "UBERON:8600137",
+       "UBERON:8600139"
+      ]
+     },
+     "cell_type": {
+      "type": "categorical",
+      "levels": [
+       "B cell",
+       "CD4-positive, alpha-beta T cell",
+       "CD8-positive, alpha-beta T cell",
+       "T cell",
+       "conventional dendritic cell",
+       "dendritic cell",
+       "innate lymphoid cell",
+       "leukocyte",
+       "macrophage",
+       "mast cell",
+       "monocyte",
+       "naive T cell",
+       "natural killer cell",
+       "plasma cell",
+       "plasmacytoid dendritic cell",
+       "regulatory T cell",
+       "unknown"
+      ]
+     },
+     "assay": {
+      "type": "categorical",
+      "levels": [
+       "10x 3' v1",
+       "10x 3' v2",
+       "10x 3' v3"
+      ]
+     },
+     "disease": {
+      "type": "categorical",
+      "levels": [
+       "Crohn disease",
+       "normal"
+      ]
+     },
+     "sex": {
+      "type": "categorical",
+      "levels": [
+       "female",
+       "male"
+      ]
+     },
+     "tissue": {
+      "type": "categorical",
+      "levels": [
+       "ascending colon",
+       "caecum epithelium",
+       "caecum lamina propria",
+       "colon",
+       "colonic epithelium",
+       "descending colon",
+       "lamina propria of mucosa of colon",
+       "sigmoid colon",
+       "sigmoid colon epithelium",
+       "sigmoid colon lamina propria",
+       "transverse colon epithelium",
+       "transverse colon lamina propria"
+      ]
+     },
+     "self_reported_ethnicity": {
+      "type": "categorical",
+      "levels": [
+       "unknown"
+      ]
+     },
+     "development_stage": {
+      "type": "categorical",
+      "levels": [
+       "adult stage",
+       "eighth decade stage",
+       "fifth decade stage",
+       "fourth decade stage",
+       "seventh decade stage",
+       "sixth decade stage",
+       "third decade stage"
+      ]
+     },
+     "predicted_doublet": {
+      "type": "categorical",
+      "levels": [
+       "False"
+      ]
+     },
+     "cluster": {
+      "type": "categorical",
+      "levels": [
+       "0",
+       "1",
+       "2",
+       "3",
+       "4",
+       "5",
+       "6",
+       "7",
+       "8",
+       "9",
+       "10",
+       "11",
+       "12",
+       "13",
+       "14",
+       "15",
+       "16",
+       "17",
+       "18",
+       "19",
+       "20",
+       "21",
+       "22",
+       "23",
+       "24"
+      ]
+     },
+     "cell_type_predicted": {
+      "type": "categorical",
+      "levels": [
+       "B cells",
+       "Mast cells",
+       "Myeloid cells",
+       "NK cells",
+       "Plasma cells",
+       "Proliferating cells",
+       "T cells"
+      ]
+     },
+     "annotation_confidence": {
+      "type": "categorical",
+      "levels": [
+       "high",
+       "medium"
+      ]
+     },
+     "n_genes": {
+      "type": "numeric",
+      "levels": []
+     },
+     "n_counts": {
+      "type": "numeric",
+      "levels": []
+     },
+     "n_genes_by_counts": {
+      "type": "numeric",
+      "levels": []
+     },
+     "total_counts": {
+      "type": "numeric",
+      "levels": []
+     },
+     "total_counts_mt": {
+      "type": "numeric",
+      "levels": []
+     },
+     "pct_counts_mt": {
+      "type": "numeric",
+      "levels": []
+     },
+     "total_counts_ribo": {
+      "type": "numeric",
+      "levels": []
+     },
+     "pct_counts_ribo": {
+      "type": "numeric",
+      "levels": []
+     },
+     "total_counts_hb": {
+      "type": "numeric",
+      "levels": []
+     },
+     "pct_counts_hb": {
+      "type": "numeric",
+      "levels": []
+     },
+     "doublet_score": {
+      "type": "numeric",
+      "levels": []
+     }
+    },
+    "clusters": [
+     "0",
+     "1",
+     "2",
+     "3",
+     "4",
+     "5",
+     "6",
+     "7",
+     "8",
+     "9",
+     "10",
+     "11",
+     "12",
+     "13",
+     "14",
+     "15",
+     "16",
+     "17",
+     "18",
+     "19",
+     "20",
+     "21",
+     "22",
+     "23",
+     "24"
+    ],
+    "warnings": [
+     "This dataset came with its own cell-type labels (17 of them), which have been kept in 'cell_type'. The labels predicted here are in 'cell_type_predicted'. The later stages group by 'cell_type' unless you choose otherwise, so they will use the dataset's labels; the table 'annotation_agreement' shows how far the two agree."
+    ]
+   },
+   "error": null,
+   "started_at": "2026-11-25T20:44:45.831786Z",
+   "finished_at": "2026-11-25T20:55:07.552802Z"
+  },
+  {
+   "key": "differential_expression",
+   "position": 7,
+   "status": "completed",
+   "progress": 1.0,
+   "message": "Completed",
+   "summary": {
+    "comparison": "Condition within cell type (pseudobulk)",
+    "method": "DESeq2 on pseudobulk counts (sum per sample and group), Wald test, apeglm shrinkage",
+    "design": "~ assay + Type",
+    "contrast": "Infl vs NonI",
+    "replicate_unit": "biosample_id",
+    "samples_test": 8,
+    "samples_reference": 32,
+    "grouped_by": "cell_type_predicted",
+    "groups_tested": [
+     "B cells",
+     "Mast cells",
+     "Myeloid cells",
+     "NK cells",
+     "Plasma cells",
+     "Proliferating cells",
+     "T cells"
+    ],
+    "groups_skipped": [],
+    "n_significant_by_group": {
+     "B cells": 47,
+     "Mast cells": 45,
+     "Myeloid cells": 524,
+     "NK cells": 42,
+     "Plasma cells": 442,
+     "Proliferating cells": 150,
+     "T cells": 253
+    },
+    "alpha": 0.05,
+    "condition_column": "Type",
+    "test_level": "Infl",
+    "reference_level": "NonI",
+    "warnings": []
+   },
+   "error": null,
+   "started_at": "2026-11-25T20:57:10.873522Z",
+   "finished_at": "2026-11-25T20:59:32.138492Z"
+  },
+  {
+   "key": "interpretation",
+   "position": 8,
+   "status": "completed",
+   "progress": 1.0,
+   "message": "Completed",
+   "summary": {
+    "source": "condition effect within each cell type (pseudobulk DESeq2)",
+    "grouped_by": "cell_type",
+    "groups": [
+     "B cells",
+     "Mast cells",
+     "Myeloid cells",
+     "NK cells",
+     "Plasma cells",
+     "Proliferating cells",
+     "T cells"
+    ],
+    "gene_set_source": "MSigDB 2026.1.Hs via msigdbr",
+    "collections": [
+     "hallmark",
+     "go_bp"
+    ],
+    "ora_run": true,
+    "gsea_run": true,
+    "padj_cutoff": 0.05,
+    "lfc_cutoff": 1.0,
+    "significant_sets_by_group": {
+     "B cells": {
+      "ora": 2,
+      "gsea": 78
+     },
+     "Mast cells": {
+      "ora": 0,
+      "gsea": 217
+     },
+     "Myeloid cells": {
+      "ora": 119,
+      "gsea": 426
+     },
+     "NK cells": {
+      "ora": 233,
+      "gsea": 138
+     },
+     "Plasma cells": {
+      "ora": 16,
+      "gsea": 277
+     },
+     "Proliferating cells": {
+      "ora": 20,
+      "gsea": 478
+     },
+     "T cells": {
+      "ora": 72,
+      "gsea": 93
+     }
+    },
+    "signature_scoring": {
+     "collection": "MSigDB Hallmark",
+     "n_sets": 50,
+     "most_variable": [
+      "Tnfa signaling via nfkb",
+      "Myc targets v1",
+      "Reactive oxygen species pathway",
+      "Complement",
+      "Oxidative phosphorylation"
+     ]
+    },
+    "background_definition": "All genes tested in the corresponding comparison",
+    "warnings": []
+   },
+   "error": null,
+   "started_at": "2026-11-25T21:02:02.695335Z",
+   "finished_at": "2026-11-25T21:07:55.075267Z"
+  },
+  {
+   "key": "advanced",
+   "position": 9,
+   "status": "completed",
+   "progress": 1.0,
+   "message": "Completed",
+   "summary": {
+    "modules": {
+     "cell_cycle": {
+      "name": "Cell-cycle scoring",
+      "status": "completed",
+      "assumptions": "Scores are relative within this dataset; a 'G1' call means neither S nor G2/M genes are elevated, which includes non-cycling cells.",
+      "s_genes_used": 41,
+      "g2m_genes_used": 54,
+      "fraction_s_or_g2m": 0.307
+     },
+     "differential_abundance": {
+      "name": "Differential abundance",
+      "status": "completed",
+      "assumptions": "Samples are the replicates. Proportions are compositional: a rise in one cell type lowers the share of the others. Requires at least two samples per condition.",
+      "contrast": "Infl vs NonI",
+      "samples_test": 8,
+      "samples_reference": 32,
+      "n_significant": 2,
+      "method": "edgeR 4.6.3 quasi-likelihood F-test on cell counts per sample"
+     },
+     "trajectory": {
+      "name": "Trajectory and pseudotime",
+      "status": "completed",
+      "assumptions": "Assumes the sampled cells span a continuous process and that the chosen root is its true start. Pseudotime orders transcriptional similarity, not real time; fully differentiated, unrelated cell types (for example blood cell types in PBMCs) do not form a trajectory.",
+      "groups": 17,
+      "edges_above_0.05": 68,
+      "pseudotime": false
+     },
+     "communication": {
+      "name": "Cell-cell communication",
+      "status": "completed",
+      "assumptions": "Infers possible ligand-receptor interactions from co-expression of curated pairs between cell groups. Expression of a ligand and receptor does not show that signalling occurs: protein levels, proximity and activity are not measured.",
+      "resource": "LIANA 'consensus' ligand-receptor resource",
+      "method": "LIANA rank aggregate (consensus of CellPhoneDB, Connectome, log2FC, NATMI, SingleCellSignalR)",
+      "n_pairs_tested": 14860,
+      "n_top_ranked": 1101,
+      "groups": 17
+     }
+    },
+    "grouped_by": "cell_type",
+    "gene_regulatory_network_inference": "De novo network inference (SCENIC/GRNBoost2) is not included in this release; transcription-factor activity from curated regulons is offered instead.",
+    "metadata_columns": {
+     "Type": {
+      "type": "categorical",
+      "levels": [
+       "Heal",
+       "Infl",
+       "NonI"
+      ]
+     },
+     "donor_id": {
+      "type": "categorical",
+      "levels": [
+       "104152",
+       "104689",
+       "105446",
+       "106265",
+       "107306",
+       "110204",
+       "114902",
+       "117351",
+       "121881",
+       "124246",
+       "128208",
+       "128400",
+       "128624",
+       "130084",
+       "139073",
+       "154787",
+       "164969",
+       "175041",
+       "178961",
+       "180844",
+       "197396",
+       "1108147",
+       "N10",
+       "N11",
+       "N13",
+       "N15",
+       "N16",
+       "N17",
+       "N18",
+       "N20",
+       "N21",
+       "N46",
+       "N51",
+       "N8"
+      ]
+     },
+     "Layer": {
+      "type": "categorical",
+      "levels": [
+       "E",
+       "L",
+       "N"
+      ]
+     },
+     "Celltype": {
+      "type": "categorical",
+      "levels": [
+       "B cells",
+       "B cells AICDA LRMP",
+       "DC1",
+       "DC2 CD1D",
+       "DC2 CD1D-",
+       "ILCs",
+       "Immune Cycling cells",
+       "Macrophages",
+       "Macrophages CCL3 CCL4",
+       "Macrophages LYVE1",
+       "Macrophages Metallothionein",
+       "Mast cells",
+       "Mature DCs",
+       "Monocytes CHI3L1 CYP27A1",
+       "Monocytes S100A8 S100A9",
+       "NK cells KLRF1 CD3G-",
+       "NK-like cells ID3 ENTPD1",
+       "Plasma cells",
+       "T cells CD4 FOSB",
+       "T cells CD4 IL17A",
+       "T cells CD8",
+       "T cells CD8 KLRG1",
+       "T cells Naive CD4",
+       "T cells OGT",
+       "Tregs"
+      ]
+     },
+     "assay_ontology_term_id": {
+      "type": "categorical",
+      "levels": [
+       "EFO:0009899",
+       "EFO:0009901",
+       "EFO:0009922"
+      ]
+     },
+     "disease_ontology_term_id": {
+      "type": "categorical",
+      "levels": [
+       "MONDO:0005011",
+       "PATO:0000461"
+      ]
+     },
+     "suspension_type": {
+      "type": "categorical",
+      "levels": [
+       "cell"
+      ]
+     },
+     "is_primary_data": {
+      "type": "categorical",
+      "levels": [
+       "False",
+       "True"
+      ]
+     },
+     "cell_type_ontology_term_id": {
+      "type": "categorical",
+      "levels": [
+       "CL:0000084",
+       "CL:0000097",
+       "CL:0000235",
+       "CL:0000236",
+       "CL:0000451",
+       "CL:0000576",
+       "CL:0000623",
+       "CL:0000624",
+       "CL:0000625",
+       "CL:0000738",
+       "CL:0000784",
+       "CL:0000786",
+       "CL:0000815",
+       "CL:0000898",
+       "CL:0000990",
+       "CL:0001065",
+       "unknown"
+      ]
+     },
+     "self_reported_ethnicity_ontology_term_id": {
+      "type": "categorical",
+      "levels": [
+       "unknown"
+      ]
+     },
+     "age group": {
+      "type": "categorical",
+      "levels": [
+       "20-24",
+       "25-29",
+       "30-34",
+       "35-39",
+       "40-44",
+       "45-49",
+       "50-54",
+       "55-59",
+       "60-64",
+       "70-74"
+      ]
+     },
+     "sex_ontology_term_id": {
+      "type": "categorical",
+      "levels": [
+       "PATO:0000383",
+       "PATO:0000384"
+      ]
+     },
+     "development_stage_ontology_term_id": {
+      "type": "categorical",
+      "levels": [
+       "HsapDv:0000237",
+       "HsapDv:0000238",
+       "HsapDv:0000239",
+       "HsapDv:0000240",
+       "HsapDv:0000241",
+       "HsapDv:0000242",
+       "HsapDv:0000258"
+      ]
+     },
+     "tissue_type": {
+      "type": "categorical",
+      "levels": [
+       "tissue"
+      ]
+     },
+     "tissue_ontology_term_id": {
+      "type": "categorical",
+      "levels": [
+       "UBERON:0000397",
+       "UBERON:0001155",
+       "UBERON:0001156",
+       "UBERON:0001158",
+       "UBERON:0001159",
+       "UBERON:0005636",
+       "UBERON:0007177",
+       "UBERON:7770006",
+       "UBERON:7770008",
+       "UBERON:8600136",
+       "UBERON:8600137",
+       "UBERON:8600139"
+      ]
+     },
+     "cell_type": {
+      "type": "categorical",
+      "levels": [
+       "B cell",
+       "CD4-positive, alpha-beta T cell",
+       "CD8-positive, alpha-beta T cell",
+       "T cell",
+       "conventional dendritic cell",
+       "dendritic cell",
+       "innate lymphoid cell",
+       "leukocyte",
+       "macrophage",
+       "mast cell",
+       "monocyte",
+       "naive T cell",
+       "natural killer cell",
+       "plasma cell",
+       "plasmacytoid dendritic cell",
+       "regulatory T cell",
+       "unknown"
+      ]
+     },
+     "assay": {
+      "type": "categorical",
+      "levels": [
+       "10x 3' v1",
+       "10x 3' v2",
+       "10x 3' v3"
+      ]
+     },
+     "disease": {
+      "type": "categorical",
+      "levels": [
+       "Crohn disease",
+       "normal"
+      ]
+     },
+     "sex": {
+      "type": "categorical",
+      "levels": [
+       "female",
+       "male"
+      ]
+     },
+     "tissue": {
+      "type": "categorical",
+      "levels": [
+       "ascending colon",
+       "caecum epithelium",
+       "caecum lamina propria",
+       "colon",
+       "colonic epithelium",
+       "descending colon",
+       "lamina propria of mucosa of colon",
+       "sigmoid colon",
+       "sigmoid colon epithelium",
+       "sigmoid colon lamina propria",
+       "transverse colon epithelium",
+       "transverse colon lamina propria"
+      ]
+     },
+     "self_reported_ethnicity": {
+      "type": "categorical",
+      "levels": [
+       "unknown"
+      ]
+     },
+     "development_stage": {
+      "type": "categorical",
+      "levels": [
+       "adult stage",
+       "eighth decade stage",
+       "fifth decade stage",
+       "fourth decade stage",
+       "seventh decade stage",
+       "sixth decade stage",
+       "third decade stage"
+      ]
+     },
+     "predicted_doublet": {
+      "type": "categorical",
+      "levels": [
+       "False"
+      ]
+     },
+     "cluster": {
+      "type": "categorical",
+      "levels": [
+       "0",
+       "1",
+       "2",
+       "3",
+       "4",
+       "5",
+       "6",
+       "7",
+       "8",
+       "9",
+       "10",
+       "11",
+       "12",
+       "13",
+       "14",
+       "15",
+       "16",
+       "17",
+       "18",
+       "19",
+       "20",
+       "21",
+       "22",
+       "23",
+       "24"
+      ]
+     },
+     "cell_type_predicted": {
+      "type": "categorical",
+      "levels": [
+       "B cells",
+       "Mast cells",
+       "Myeloid cells",
+       "NK cells",
+       "Plasma cells",
+       "Proliferating cells",
+       "T cells"
+      ]
+     },
+     "annotation_confidence": {
+      "type": "categorical",
+      "levels": [
+       "high",
+       "medium"
+      ]
+     },
+     "phase": {
+      "type": "categorical",
+      "levels": [
+       "G1",
+       "G2M",
+       "S"
+      ]
+     },
+     "n_genes": {
+      "type": "numeric",
+      "levels": []
+     },
+     "n_counts": {
+      "type": "numeric",
+      "levels": []
+     },
+     "n_genes_by_counts": {
+      "type": "numeric",
+      "levels": []
+     },
+     "total_counts": {
+      "type": "numeric",
+      "levels": []
+     },
+     "total_counts_mt": {
+      "type": "numeric",
+      "levels": []
+     },
+     "pct_counts_mt": {
+      "type": "numeric",
+      "levels": []
+     },
+     "total_counts_ribo": {
+      "type": "numeric",
+      "levels": []
+     },
+     "pct_counts_ribo": {
+      "type": "numeric",
+      "levels": []
+     },
+     "total_counts_hb": {
+      "type": "numeric",
+      "levels": []
+     },
+     "pct_counts_hb": {
+      "type": "numeric",
+      "levels": []
+     },
+     "doublet_score": {
+      "type": "numeric",
+      "levels": []
+     },
+     "S_score": {
+      "type": "numeric",
+      "levels": []
+     },
+     "G2M_score": {
+      "type": "numeric",
+      "levels": []
+     }
+    },
+    "warnings": [
+     "Trajectory: no root group was chosen, so only the PAGA connectivity graph was computed. Pseudotime needs a biologically justified starting population."
+    ]
+   },
+   "error": null,
+   "started_at": "2026-11-25T22:36:07.313855Z",
+   "finished_at": "2026-11-25T22:38:58.153132Z"
+  }
+ ]
+}
