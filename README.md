@@ -723,3 +723,9 @@ Part of the LSMA Analysis Lab showcase series:
 not a description of how any patient should be treated. Public data only: CZ CELLxGENE Discover, dataset
 `518d9049-2a76-44f8-8abc-1e2b59ab5ba1`, from Kong et al., *Immunity* 2023 (doi:10.1016/j.immuni.2023.01.002);
 gene sets from MSigDB.</sub>
+
+---
+
+**The LSMA Team**, Analysis Lab, London School of Multiomics & AI
+
+<img src="https://raw.githubusercontent.com/MultiOmics-Intelligence/.github/main/assets/signature/LSMA_Banner_Team.svg" alt="The LSMA Team, London School of Multiomics & AI" width="600">
